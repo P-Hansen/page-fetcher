@@ -8,9 +8,9 @@ const localPath = process.argv.slice(3);
   request(address, (error, response, body) => {
     console.log('error:', error); // Print the error if one occurred
     console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    //console.log('body:', body); // Print the HTML for the Google homepage.
+    //console.log('body:', body.size); // Print the HTML for the Google homepage.
     fs.writeFile(destination, body, () => {
-      console.log(address + " Downloaded and saved to " + destination);
+      console.log(address + " Downloaded and saved " + fs.statSync(destination).size + " bytes to " + destination);
     });
   });
 };
